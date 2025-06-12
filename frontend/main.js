@@ -103,6 +103,8 @@ start.addEventListener('click', () => {
     })
     .catch(err => {
         console.error("錯誤：", err);
+        alert('Error!')
+        loading.style.zIndex = -1;
     });
 
 })

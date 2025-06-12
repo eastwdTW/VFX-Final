@@ -2,6 +2,7 @@ from flask import Flask, request, send_file
 from PIL import Image
 from flask_cors import CORS
 import io
+from styleTransfer import styleTransfer
 
 app = Flask(__name__)
 CORS(app)
@@ -18,12 +19,7 @@ def upload_images():
     content_img = Image.open(content_file).convert("RGB")
     style_img = Image.open(style_file).convert("RGB")
 
-    new_width = content_img.width + style_img.width
-    new_height = max(content_img.height, style_img.height)
-
-    result_img = Image.new("RGB", (new_width, new_height))
-    result_img.paste(content_img, (0, 0))
-    result_img.paste(style_img, (content_img.width, 0))
+    result_img = styleTransfer(content_img, style_img)
 
     img_io = io.BytesIO()
     result_img.save(img_io, 'JPEG')
