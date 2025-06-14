@@ -18,7 +18,8 @@ cd backend
 pip install -r requirement.txt
 python server.py
 ```
-Then just open index.html in frontend, you can transfer the style of content image to style image
+Then just open style_transfer.html in frontend, you can transfer the style of content image to style image
+And face_style_transfer.html is to transfer your portrait(capture by front camera) to other style
 
 ## License
 
