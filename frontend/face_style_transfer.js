@@ -3,41 +3,22 @@ const menuButton = document.getElementById('menu-button');
 const menu = document.getElementById('menu-container');
 menuButton.addEventListener('click', (e) => {
     menu.style.display = 'block';
+    document.body.style.overflow = 'hidden';
 })
 
 const closeButton = document.getElementById('close-button');
 closeButton.addEventListener('click', (e) => {
     menu.style.display = 'none';
+    document.body.style.overflow = '';
 })
 
 const shell = document.getElementById('shell');
 shell.addEventListener('click', (e) => {
     menu.style.display = 'none';
+    document.body.style.overflow = '';
 })
 
 // image preview handler
-const input1 = document.getElementById('imageUpload1');
-const fileNameSpan1 = document.getElementById('fileName1');
-const preview1 = document.getElementById('preview1');
-
-input1.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (file) {
-        fileNameSpan1.textContent = file.name;
-
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            preview1.src = e.target.result;
-            preview1.style.display = 'block';
-        }
-        reader.readAsDataURL(file);
-    } else {
-        fileNameSpan1.textContent = '';
-        preview1.style.display = 'none';
-        preview1.src = '';
-    }
-});
-
 const input2 = document.getElementById('imageUpload2');
 const fileNameSpan2 = document.getElementById('fileName2');
 const preview2 = document.getElementById('preview2');
@@ -78,6 +59,7 @@ for (let i = 0; i < 8; i++) {
 
 start.addEventListener('click', () => {
     loading.style.display = 'block';
+    document.body.style.overflow = 'hidden';
     for (let i = 0; i < loadingDots.length; i++) {
         const element = loadingDots[i];
         var deg = 2*Math.PI * i / 8;
@@ -89,26 +71,30 @@ start.addEventListener('click', () => {
     count = 1;
     setInterval(update, 100);
 
-    const formData = new FormData();
-    formData.append("content", input1.files[0]);
-    formData.append("style", input2.files[0]);
+    canvas.toBlob((blob) => {
+        const formData = new FormData();
+        formData.append("content", blob);
+        formData.append("style", input2.files[0]);
 
-    fetch("http://127.0.0.1:5000/upload", {
-        method: "POST",
-        body: formData
-    })
-    .then(res => res.blob())
-    .then(blob => {
-        const url = URL.createObjectURL(blob);
-        preview3.src = url;
-        preview3.style.display = 'block';
-        loading.style.display = 'none';
-    })
-    .catch(err => {
-        console.error("錯誤：", err);
-        alert('Error!')
-        loading.style.display = 'none';
-    });
+        fetch("http://127.0.0.1:5000/upload", {
+            method: "POST",
+            body: formData
+        })
+        .then(res => res.blob())
+        .then(blob => {
+            const url = URL.createObjectURL(blob);
+            preview3.src = url;
+            preview3.style.display = 'block';
+            preview3.style.aspectRatio = '4 / 3';
+            loading.style.display = 'none';
+            document.body.style.overflow = '';
+        })
+        .catch(err => {
+            console.error("Error :", err);
+            alert('Error!')
+            loading.style.display = 'none';
+        });
+    }, 'image/jpeg');
 
 })
 
@@ -139,7 +125,7 @@ preview3.addEventListener('click', (e) => {
 
     largeImage.src = preview3.src;
     largeImage.style.maxWidth = '90%';
-    largeImage.style.maxHeight = '90%';
+    largeImage.style.aspectRatio = '4 / 3';
 
     largeImageContainer.appendChild(largeImage);
     body.appendChild(largeImageContainer);
@@ -147,4 +133,27 @@ preview3.addEventListener('click', (e) => {
     largeImageContainer.addEventListener('click', () => {
         body.removeChild(largeImageContainer);
     });
+});
+
+// snapshot handler
+const video = document.getElementById('video');
+const canvas = document.getElementById('canvas');
+const context = canvas.getContext('2d');
+const snap = document.getElementById('snap');
+
+navigator.mediaDevices.getUserMedia({ video: true })
+.then(stream => {
+    video.srcObject = stream;
+})
+.catch(err => {
+    alert('Camera unavailable: ' + err);
+});
+
+snap.addEventListener('click', (e) => {
+    canvas.style.display = 'block';
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.save();
+    context.scale(-1, 1);
+    context.drawImage(video, -canvas.width, 0, canvas.width, canvas.height);
+    context.restore();
 });

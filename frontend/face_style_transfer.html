@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>VFX Final</title>
+    <link rel="icon" type="image/x-icon" href="./assets/icon.png">
+	<!-- css -->
+	<link rel="stylesheet" type="text/css" href="./style.css">
+	<!-- symbol -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+	<!-- font-family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+	<!-- script -->
+	<script src="./face_style_transfer.js" type="text/javascript" defer></script>
+</head>
+<body>
+	<div id="loading">
+		<div class="dot" id="d1"></div>
+		<div class="dot" id="d2"></div>
+		<div class="dot" id="d3"></div>
+		<div class="dot" id="d4"></div>
+		<div class="dot" id="d5"></div>
+		<div class="dot" id="d6"></div>
+		<div class="dot" id="d7"></div>
+		<div class="dot" id="d8"></div>
+	</div>
+
+	<div id="menu-container">
+		<div id="shell"></div>
+		<div id="menu">
+			<div class="icon">
+				<span class="material-symbols-outlined text" id="close-button">close</span>
+			</div>
+			<div id="items-container">
+				<a class="text lexend-en feature" href="./style_transfer.html">Style Transfer</a>
+				<a class="text lexend-en feature" href="./face_style_transfer.html">Face Style Transfer</a>
+			</div>
+		</div>
+	</div>
+	
+    <div id="top-bar">
+		<div class="text lexend-en">VFX Final</div>
+		<div class="icon">
+			<span class="material-symbols-outlined text" id="menu-button">menu</span>
+		</div>
+	</div>
+
+	<div id="content-container">
+        <div id="title">
+			<h1 class="text lexend-en">Face Style Transfer</h1>
+		</div>
+        
+        <div id="camera">
+            <div id="camera-container">
+                <div class="text lexend-en">Camera</div>
+                <video id="video" autoplay></video>
+                <label id="snap" class="lexend-en">Snap</label>
+            </div>
+        </div>
+        
+        <div id="input-container">
+            <div class="upload-container">
+                <div class="text lexend-en">Content</div>
+				<canvas class="snap" id="canvas"></canvas>
+            </div>
+            <div class="upload-container">
+                <div class="text lexend-en">Style</div>
+				<div class="button">
+					<label class="upload-label lexend-en" for="imageUpload2">Upload</label>
+					<input type="file" id="imageUpload2" accept="image/*">
+					<span class="file-name" id="fileName2"></span>
+				</div>
+				<img  class="preview-image" id="preview2" alt="preview">
+            </div>
+        </div>
+
+		<div id="result">
+			<div id="result-container">
+				<div class="text lexend-en">Result</div>
+				<div class="start lexend-en">Start!!!</div>
+				<img class="snap" id="preview3" alt="preview">
+			</div>
+        </div>
+
+		<footer>
+			<div class="text lexend-en">Author: Team 7</div>
+			<div class="text lexend-en">@2025</div>
+			<div class="text lexend-en">Repo URL: <a href="https://github.com/eastwdTW/VFX-Final.git">https://github.com/eastwdTW/VFX-Final.git</a></div>
+		</footer>
+	</div>
+</body>
+</html>
