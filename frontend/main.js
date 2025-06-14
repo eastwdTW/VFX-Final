@@ -1,19 +1,21 @@
+// menu handler
 const menuButton = document.getElementById('menu-button');
 const menu = document.getElementById('menu-container');
 menuButton.addEventListener('click', (e) => {
-    menu.style.zIndex = 2;
+    menu.style.display = 'block';
 })
 
 const closeButton = document.getElementById('close-button');
 closeButton.addEventListener('click', (e) => {
-    menu.style.zIndex = -1;
+    menu.style.display = 'none';
 })
 
 const shell = document.getElementById('shell');
 shell.addEventListener('click', (e) => {
-    menu.style.zIndex = -1;
+    menu.style.display = 'none';
 })
 
+// image preview handler
 const input1 = document.getElementById('imageUpload1');
 const fileNameSpan1 = document.getElementById('fileName1');
 const preview1 = document.getElementById('preview1');
@@ -58,6 +60,7 @@ input2.addEventListener('change', (e) => {
     }
 });
 
+// loading animation & images upload handler
 const start = document.getElementsByClassName('start')[0]
 const loading = document.getElementById('loading')
 const loadingDots = document.getElementsByClassName('dot')
@@ -74,7 +77,7 @@ for (let i = 0; i < 8; i++) {
 }
 
 start.addEventListener('click', () => {
-    loading.style.zIndex = 1 
+    loading.style.display = 'block';
     for (let i = 0; i < loadingDots.length; i++) {
         const element = loadingDots[i];
         var deg = 2*Math.PI * i / 8;
@@ -99,12 +102,12 @@ start.addEventListener('click', () => {
         const url = URL.createObjectURL(blob);
         preview3.src = url;
         preview3.style.display = 'block';
-        loading.style.zIndex = -1;
+        loading.style.display = 'none';
     })
     .catch(err => {
         console.error("錯誤：", err);
         alert('Error!')
-        loading.style.zIndex = -1;
+        loading.style.display = 'none';
     });
 
 })
@@ -117,3 +120,31 @@ const update = () => {
     }
     count++;
 }
+
+// large image preview handler
+const largeImageContainer = document.createElement('div');
+const largeImage = document.createElement('img');
+const body = document.getElementsByTagName('body')[0];
+preview3.addEventListener('click', (e) => {
+    largeImageContainer.style.position = 'fixed';
+    largeImageContainer.style.top = '0';
+    largeImageContainer.style.left = '0';
+    largeImageContainer.style.width = '100%';
+    largeImageContainer.style.height = '100%';
+    largeImageContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    largeImageContainer.style.display = 'flex';
+    largeImageContainer.style.justifyContent = 'center';
+    largeImageContainer.style.alignItems = 'center';
+    largeImageContainer.style.zIndex = '1000';
+
+    largeImage.src = preview3.src;
+    largeImage.style.maxWidth = '90%';
+    largeImage.style.maxHeight = '90%';
+
+    largeImageContainer.appendChild(largeImage);
+    body.appendChild(largeImageContainer);
+
+    largeImageContainer.addEventListener('click', () => {
+        body.removeChild(largeImageContainer);
+    });
+});
