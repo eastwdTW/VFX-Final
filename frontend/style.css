@@ -1,7 +1,7 @@
 #top-bar {
-	position: absolute;
+	position: fixed;
 	height: 10%;
-	width: calc(100% - 20px);
+	width: 100%;
 	left: 0;
 	top: 0;
 
@@ -11,6 +11,7 @@
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	z-index: 1;
 }
 
 #top-bar .text {
@@ -41,7 +42,7 @@
 
 #content-container {
 	position: absolute;
-	height: 82.5%;
+	min-height: 90%;
 	width: 100%;
 	left: 0;
 	top: 10%;
@@ -50,14 +51,15 @@
 
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
-	gap: 30px;
 }
 
 #title {
 	width: 100%;
-	height: 10%;
+	height: 100px;
+	margin-top: 2.5%;
+	margin-bottom: 2%;
 
 	display: flex;
 	flex-direction: column;
@@ -66,19 +68,21 @@
 }
 
 #title h1 {
-	width: 300px;
+	width: 20%;
 	text-align: center;
 	font-weight: bolder;
+	font-size: 20px;
 
-	border: 10px solid rgb(175, 160, 95);
 	background-color: rgb(175, 160, 95);
-	border-radius: 40px;
-	padding: 20px;
+	border-radius: 10px;
+	padding: 2%;
 }
 
 #input-container {
 	width: 100%;
-	height: 40%;
+	height: 400px;
+	/* margin-top: 1%; */
+	margin-bottom: 2%;
 
 	display: flex;
 	flex-direction: row;
@@ -89,23 +93,22 @@
 
 .upload-container {
 	width: 35%;
-	height: 100%;
+	height: 80%;
 
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 20px;
 
-	border: 10px solid rgb(240, 230, 200);
 	background-color: rgb(240, 230, 200);
 	border-radius: 10px;
-	padding: 10px;
+	padding: 2%;
 }
 
 .upload-container .text {
 	width: 20%;
 	padding: 10px;
-	font-size: 150%;
+	font-size: 100%;
 	font-weight: bolder;
 
 	border: 10px solid rgb(175, 160, 95);
@@ -147,7 +150,7 @@ input[type="file"] {
 
 #result {
 	width: 100%;
-	height: 40%;
+	height: 400px;
 
 	display: flex;
 	flex-direction: column;
@@ -156,7 +159,7 @@ input[type="file"] {
 
 #result-container {
 	width: 40%;
-	height: 90%;
+	height: 80%;
 
 	display: flex;
 	flex-direction: column;
@@ -172,7 +175,7 @@ input[type="file"] {
 #result .text {
 	width: 20%;
 	padding: 10px;
-	font-size: 150%;
+	font-size: 100%;
 	font-weight: bolder;
 
 	border: 10px solid rgb(175, 160, 95);
@@ -195,8 +198,7 @@ input[type="file"] {
 }
 
 footer {
-	position: absolute;
-	height: 7.5%;
+	height: 80px;
 	width: 100%;
 	left: 0;
 	bottom: 0;
