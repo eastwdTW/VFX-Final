@@ -16,7 +16,7 @@ This project provides an easy-to-use system for style-transfer.
 - TorchVision
 - Pillow
 
-* You can use the following to setup environment
+You can use the following to setup environment
 ```
 conda create -n VFX-Final python=3.10
 conda activate VFX-Final
@@ -26,15 +26,16 @@ pip install -r requirement.txt
 
 ## Usage
 
-* Run backend server
+1. Run backend server
 ```
 python server.py
 ```
 
-* Run frontend web
-Open style_transfer.html to transfer the style of content image to style image.
+2. Run frontend web
 
-Open face_style_transfer.html to transfer your portrait(capture by front camera) to other style.
+    Open style_transfer.html to transfer the style of content image to style image.
+
+    Open face_style_transfer.html to transfer your portrait(capture by front camera) to other style.
 
 ## License
 
