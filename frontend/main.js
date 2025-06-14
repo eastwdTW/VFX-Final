@@ -1,7 +1,7 @@
 const menuButton = document.getElementById('menu-button');
 const menu = document.getElementById('menu-container');
 menuButton.addEventListener('click', (e) => {
-    menu.style.zIndex = 1;
+    menu.style.zIndex = 2;
 })
 
 const closeButton = document.getElementById('close-button');
