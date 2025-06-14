@@ -2,6 +2,11 @@
 
 This project provides an easy-to-use system for style-transfer.
 
+## Team 7
+
+* R13943001 賴宗佑
+* R13631011 陳冠廷
+
 ## Requirements
 
 - Python 3.10
@@ -18,8 +23,9 @@ cd backend
 pip install -r requirement.txt
 python server.py
 ```
-Then just open style_transfer.html in frontend, you can transfer the style of content image to style image
-And face_style_transfer.html is to transfer your portrait(capture by front camera) to other style
+Then just open style_transfer.html in frontend, you can transfer the style of content image to style image.
+
+And face_style_transfer.html is to transfer your portrait(capture by front camera) to other style.
 
 ## License
 
